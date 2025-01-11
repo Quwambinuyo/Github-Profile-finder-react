@@ -7,16 +7,27 @@ function UserResults() {
 
   useEffect(() => {
     fetchUsers();
+    console.log("Hello World");
   }, []);
 
+  console.log(process.env.REACT_APP_GITHUB_URL);
+
   const fetchUsers = async () => {
-    const response = await fetch(`${process.env.REACT_APP_GITHUB_URL}/users`, {
-      headers: {
-        Authorization: `token ${process.env.REACT_APP_GITHUB_TOKEN}`,
-      },
-    });
+    const response = await fetch(
+      `https://${process.env.REACT_APP_GITHUB_URL}/users`,
+      {
+        headers: {
+          Authorization: process.env.REACT_APP_GITHUB_TOKEN,
+        },
+      }
+    );
+    console.log("Hello World");
+    console.log(response);
 
     const data = await response.json();
+
+    console.log(data);
+
     setUsers(data);
     setLoading(false);
   };
@@ -29,5 +40,7 @@ function UserResults() {
     </div>
   );
 }
+
+console.log(`token ${process.env.REACT_APP_GITHUB_TOKEN}`);
 
 export default UserResults;
