@@ -13,14 +13,11 @@ function UserResults() {
   console.log(process.env.REACT_APP_GITHUB_URL);
 
   const fetchUsers = async () => {
-    const response = await fetch(
-      `https://${process.env.REACT_APP_GITHUB_URL}/users`,
-      {
-        headers: {
-          Authorization: process.env.REACT_APP_GITHUB_TOKEN,
-        },
-      }
-    );
+    const response = await fetch(`https://api.github.com/users`, {
+      headers: {
+        Authorization: "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",
+      },
+    });
     console.log("Hello World");
     console.log(response);
 
