@@ -1,43 +1,28 @@
 import React from "react";
-import { useEffect, useState } from "react";
+import { useContext } from "react"; // Importing 'useContext' to access context values
+import Spinner from "../layout/Spinner"; // Importing the Spinner component to show a loading animation
+import UserItem from "../users/UserItem"; // Importing UserItem to display each user in a card
+import GithubContext from "../../context/github/GithubContext"; // Importing the GithubContext to access the users and loading state
 
 function UserResults() {
-  const [users, setUsers] = useState([]);
-  const [loading, setLoading] = useState(true);
+  // Accessing the 'users' and 'loading' values from the GithubContext
+  const { users, loading } = useContext(GithubContext);
 
-  useEffect(() => {
-    fetchUsers();
-    console.log("Hello World");
-  }, []);
-
-  console.log(process.env.REACT_APP_GITHUB_URL);
-
-  const fetchUsers = async () => {
-    const response = await fetch(`https://api.github.com/users`, {
-      headers: {
-        Authorization: "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",
-      },
-    });
-    console.log("Hello World");
-    console.log(response);
-
-    const data = await response.json();
-
-    console.log(data);
-
-    setUsers(data);
-    setLoading(false);
-  };
-
-  return (
-    <div className="grid grid-cols-1 gap-8 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2">
-      {users.map((user) => (
-        <h3>{user.login}</h3>
-      ))}
-    </div>
-  );
+  // If 'loading' is false, display the users
+  if (!loading) {
+    return (
+      // Grid layout for displaying users in a responsive grid
+      <div className="grid grid-cols-1 gap-8 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2">
+        {/* Iterating through 'users' array and rendering a 'UserItem' for each user */}
+        {users.map((user) => (
+          <UserItem key={user.id} user={user} />
+        ))}
+      </div>
+    );
+  } else {
+    // If still loading, show the Spinner component
+    return <Spinner />;
+  }
 }
-
-console.log(`token ${process.env.REACT_APP_GITHUB_TOKEN}`);
 
 export default UserResults;
