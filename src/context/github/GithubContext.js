@@ -39,7 +39,6 @@ export const GithubProvider = ({ children }) => {
         },
       }
     );
-
     const { items } = await response.json();
 
     // Dispatch an action to update the users in the state

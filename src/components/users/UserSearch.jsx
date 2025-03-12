@@ -34,31 +34,29 @@ function UserSearch() {
 
   return (
     // Grid layout for search form and clear button
-    <div className="grid grid-cols-1 gap-8 mb-8 xl:grid-cols-2 lg:grid-cols-2 md:grid-cols-2">
-      <div>
-        {/* Form for searching users */}
-        <form onSubmit={handleSubmit}>
-          <div className="form-control">
-            <div className="relative">
-              {/* Input field for user search */}
-              <input
-                type="text"
-                className="w-full pr-40 text-black bg-gray-200 input input-lg"
-                placeholder="Search......"
-                value={text} // Bind input value to 'text' state
-                onChange={handleChange} // Update 'text' state on input change
-              />
-              {/* Submit button for form */}
-              <button
-                type="submit"
-                className="absolute top-0 right-0 rounded-l-none w-36 btn btn-lg"
-              >
-                Go
-              </button>
-            </div>
+    <div className="grid gap-8 mb-8 md:grid-cols-2">
+      {/* Form for searching users */}
+      <form onSubmit={handleSubmit}>
+        <div className="form-control">
+          <div className="relative">
+            {/* Input field for user search */}
+            <input
+              type="text"
+              className="w-full pr-40 text-black bg-gray-200 input input-lg"
+              placeholder="Search......"
+              value={text} // Bind input value to 'text' state
+              onChange={handleChange} // Update 'text' state on input change
+            />
+            {/* Submit button for form */}
+            <button
+              type="submit"
+              className="absolute top-0 right-0 rounded-l-none w-36 btn btn-lg"
+            >
+              Go
+            </button>
           </div>
-        </form>
-      </div>
+        </div>
+      </form>
 
       {/* Show 'Clear' button if there are users in the state */}
       {users.length > 0 && (

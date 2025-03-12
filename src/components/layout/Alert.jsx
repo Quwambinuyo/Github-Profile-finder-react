@@ -9,7 +9,7 @@ function Alert() {
   return (
     // Only render the alert if it's not null
     alert !== null && (
-      <p className="flex items-start mb-4 space-x-2">
+      <div className="flex items-center mb-4 space-x-2">
         {/* Check if the alert type is "error" and display an error icon */}
         {alert.type === "error" && (
           <svg
@@ -31,7 +31,7 @@ function Alert() {
         <p className="flex-1 text-base font-semibold leading-7text-white">
           <strong>{alert.msg}</strong> {/* Alert message text */}
         </p>
-      </p>
+      </div>
     )
   );
 }
